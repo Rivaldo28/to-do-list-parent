@@ -1,0 +1,46 @@
+.margin {
+  margin-top: 65px !important;
+}
+
+button {
+  margin-right: 6px;
+}
+
+button.btn.btn-primary {
+  background-color:  #4d7498 ;
+  border: #4d7498;
+}
+
+.btn-danger {
+  background-color: #9151E0;
+  border: #9151E0;
+}
+
+button.btn.btn-primary:hover, .btn-danger:hover{
+  background: linear-gradient(45deg,#51C8E0, #516EE0) !important;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold; 
+  color: #555; 
+}
+
+.form-control {
+  border: 1px solid #ced4da; 
+  border-radius: 5px;
+  padding: 10px; 
+  transition: border-color 0.3s; 
+}
+
+.form-control:focus {
+  border-color: #516EE0; 
+  box-shadow: 0 0 5px rgba(145, 81, 224, 1);
+}
+
+.form-control option {
+  padding: 10px; 
+}

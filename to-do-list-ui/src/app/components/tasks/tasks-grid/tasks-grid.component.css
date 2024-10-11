@@ -1,0 +1,30 @@
+td {
+  text-align: center;
+}
+
+input[type="radio" ] {
+  width: .9rem;
+  height: .9rem;
+  border: 1rem;
+  color: red;
+}
+.table {
+  margin-top: 15px;
+}
+
+.table thead.th-custom {
+  background-color: #007bff !important; 
+  color: white; 
+}
+
+.table th {
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.table .thead-dark th {
+  color: #fff;
+  background-color: #6251E0;
+  border-color: #6251E0;
+}

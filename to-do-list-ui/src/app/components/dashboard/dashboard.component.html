@@ -1,0 +1,22 @@
+<div *ngIf="loading" class="loading">
+  <p>Carregando...</p>
+</div>
+
+<div class="container mt-5" *ngIf="!loading">
+  <h2 class="text-center mb-4">Dashboard de Status</h2>
+
+  <!-- Gráfico de barras -->
+  <div class="mb-4">
+    <h4 class="text-center">Total de Tarefas por Status</h4>
+    <canvas baseChart
+            [datasets]="[{ data: chartData, label: 'Status' }]"
+            [labels]="chartLabels"
+            [options]="chartOptions"
+            chartType="bar">
+    </canvas>
+  </div>
+
+  <button type="submit" class="btn btn-primary" routerLink="/">
+    <i class="fa fa-hand-o-right"></i> Voltar
+  </button>
+</div>

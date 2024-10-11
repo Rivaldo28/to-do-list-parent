@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5 margin">
   <h2>{{ isEditMode ? 'Editar Lista' : 'Adicionar Lista' }}</h2>
 
   <div *ngIf="errorMessage" class="alert alert-danger">
@@ -22,7 +22,14 @@
         <option value="em andamento">Em Andamento</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-success">{{ isEditMode ? 'Atualizar Tarefa' : 'Adicionar Tarefa' }}</button>
-    <a routerLink="/" class="btn btn-secondary">Cancelar</a>
+
+    <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ isEditMode ? 'Editar tarefa' : 'Adicionar nova tarefa' }}">
+      <i class="fa" [ngClass]="isEditMode ? 'fa-edit' : 'fa-plus'"></i>
+      {{ isEditMode ? '' : '' }}
+    </button>
+
+    <button routerLink="/" type="button" class="btn btn-primary" title="Cancelar">
+      <i class="fa fa-cancel"></i> 
+    </button>
   </form>
 </div>

@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-5 margin">
   <h1 class="text-center mb-4">Lista de Tarefas</h1>
 
   <div class="form-group">
@@ -9,28 +9,28 @@
       <option value="realizado">Realizado</option>
       <option value="em andamento">Em Andamento</option>
     </select>
-  </div><br>
+  </div>
+  <button type="submit" class="btn btn-primary" routerLink="/add" title="Novo">
+    <i class="fa fa-file"></i>
+</button>
+<button type="button" class="btn btn-primary"
+(click)="deleteSelectedTask()" title="Deletar"
+[disabled]="!selectedTask"
+    class="btn btn-primary" >
+  <i class="fa fa-trash"></i>
+</button>
+
+<button type="button" class="btn btn-primary" title="CSV/Excel"><!-- (click)="exportToCsv()" -->
+  <i class="fa fa-file-excel-o"></i>
+</button>
+
+<button type="button" class="btn btn-danger colorEidit"
+*ngIf="selectedTask"  title="Editar"
+[routerLink]="['/edit', selectedTask.id]" >
+  <i class="fa fa-edit"></i>
+</button>
+  <br>
 
   <app-tasks-grid [tasks]="filteredTasks" (selectTask)="selectTask($event)"></app-tasks-grid>
 
-  <button 
-  [routerLink]="['/add']" 
-    class="btn btn-primary btn-">
-    Novo
-  </button>
-
-  <button 
-    (click)="deleteSelectedTask()" 
-    class="btn btn-danger" 
-    [disabled]="!selectedTask">
-    Excluir Tarefa Selecionada
-  </button>
-
-  <button 
-    *ngIf="selectedTask" 
-    [routerLink]="['/edit', selectedTask.id]" 
-    class="btn btn-danger" 
-    style="margin-left: 10px;">
-    Editar Tarefa Selecionada
-  </button>
 </div>

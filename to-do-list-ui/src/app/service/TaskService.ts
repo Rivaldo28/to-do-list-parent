@@ -49,12 +49,9 @@ export class TaskService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    // Aqui você pode personalizar a mensagem de erro
     if (error.error instanceof ErrorEvent) {
-      // Erro do lado do cliente
       console.error('Ocorreu um erro:', error.error.message);
     } else {
-      // Erro do lado do servidor
       console.error(`Código de erro do servidor: ${error.status}, corpo da resposta: ${error.error}`);
     }
     return throwError('Algo deu errado; por favor, tente novamente mais tarde.');
