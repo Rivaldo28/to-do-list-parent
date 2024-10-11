@@ -2,10 +2,10 @@
   <table class="table table-bordered table-hover">
     <thead class="thead-dark">
       <tr>
+        <th>Selecione</th>
         <th>Título</th>
         <th>Descrição</th>
         <th>Status</th>
-        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -13,12 +13,12 @@
         <td colspan="4" class="text-center">Nenhuma tarefa encontrada.</td>
       </tr>
       <tr *ngFor="let task of tasks">
+        <td>
+          <input type="radio" name="selectedTask" (change)="onSelectTask(task)"  class="radioStyle"/>
+        </td>
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.status }}</td>
-        <td>
-          <input type="radio" name="selectedTask" (change)="onSelectTask(task)" />
-        </td>
       </tr>
     </tbody>
   </table>
