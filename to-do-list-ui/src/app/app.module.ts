@@ -15,6 +15,7 @@ import { TaskService } from './service/TaskService';
 import { ChartsModule } from 'ng2-charts';
 import { TasksAddComponent } from './components/tasks-add/tasks-add.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/tasks', pathMatch: 'full' }, 
   { path: 'tasks', component: TasksComponent },
