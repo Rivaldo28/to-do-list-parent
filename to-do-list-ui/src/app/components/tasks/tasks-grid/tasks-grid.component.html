@@ -1,0 +1,25 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Título</th>
+        <th>Descrição</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="tasks.length === 0">
+        <td colspan="4" class="text-center">Nenhuma tarefa encontrada.</td>
+      </tr>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.status }}</td>
+        <td>
+          <input type="radio" name="selectedTask" (change)="onSelectTask(task)" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

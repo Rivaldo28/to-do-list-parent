@@ -30,12 +30,18 @@ public class TaskController {
         return ResponseEntity.ok(updatedTask);
     }
 
+    @GetMapping("/edit/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+        Task task = taskService.getTaskById(id);
+        return ResponseEntity.ok(task);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
     }
-    
+
     @GetMapping("/filter")
     public List<Task> filterTasks(@RequestParam String status) {
         return taskService.filterTasksByStatus(status);
