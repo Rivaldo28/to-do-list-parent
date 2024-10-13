@@ -24,6 +24,9 @@ public class Task {
     @Column(name = "create_date", updatable = false)
     private LocalDateTime createdDate;
 
+    public Task() {
+    }
+
     public Long getId() {
         return id;
     }
