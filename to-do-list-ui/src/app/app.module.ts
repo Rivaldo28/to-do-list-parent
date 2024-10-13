@@ -3,26 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { TasksGridComponent } from './components/tasks/tasks-grid/tasks-grid.component';
 import { TasksComponent } from './components/tasks/tasks.component';
-<<<<<<< HEAD
-
-=======
-import { TasksAddComponent } from './components/tasks-add/tasks-add.component';
->>>>>>> a35c5a3cd833a526043a931187b5c7cfbe83c288
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component'; 
 
 import { TaskService } from './service/TaskService';
-import { ChartsModule } from 'ng2-charts';
-<<<<<<< HEAD
 import { TasksAddComponent } from './components/tasks-add/tasks-add.component';
-
-
-=======
->>>>>>> a35c5a3cd833a526043a931187b5c7cfbe83c288
 
 const routes: Routes = [
   { path: '', redirectTo: '/tasks', pathMatch: 'full' }, 
@@ -37,14 +27,13 @@ const routes: Routes = [
     AppComponent,
     TasksComponent,
     TasksGridComponent,
-    TasksAddComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    TasksAddComponent
   ],
   exports: [
     TasksComponent,
     TasksGridComponent,
-    TasksAddComponent
   ],
   imports: [
     BrowserModule,
