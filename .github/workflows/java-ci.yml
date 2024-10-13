@@ -21,11 +21,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: |
-          cd to-do-list-api
-          mvn clean install --no-transfer-progress
+        run: mvn clean install --no-transfer-progress
+        working-directory: ./to-do-list-api
 
       - name: Run Tests
-        run: |
-          cd to-do-list-api
-          mvn test --no-transfer-progress
+        run: mvn test --no-transfer-progress
+        working-directory: ./to-do-list-api
