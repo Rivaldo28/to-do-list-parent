@@ -64,6 +64,14 @@ public class Task {
         this.createdDate = createdDate;
     }
 
+    public Task(Long id, String title, String description, String status, LocalDateTime createdDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.createdDate = createdDate;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
