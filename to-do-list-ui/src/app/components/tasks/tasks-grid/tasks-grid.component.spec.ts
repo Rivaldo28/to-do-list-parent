@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TasksGridComponent } from './tasks-grid.component';
 
 describe('TasksGridComponent', () => {
@@ -7,7 +8,8 @@ describe('TasksGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TasksGridComponent ]
+      imports: [HttpClientTestingModule], 
+      declarations: [TasksGridComponent]
     })
     .compileComponents();
   });

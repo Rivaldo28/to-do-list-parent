@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing'; // Adicione esta linha
 import { DashboardComponent } from './dashboard.component';
+import { TaskService } from 'src/app/service/TaskService';
+
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,7 +10,9 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      imports: [HttpClientTestingModule],
+      declarations: [DashboardComponent],
+      providers: [TaskService] 
     })
     .compileComponents();
   });
