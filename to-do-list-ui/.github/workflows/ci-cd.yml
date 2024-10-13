@@ -1,29 +1,30 @@
-name: CI/CD Pipeline
+# Este workflow fará uma instalação limpa das dependências do Node, usará cache/restaurará,
+# construirá o código-fonte e executará testes na versão 14 do Node.
+# Para mais informações, veja: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x] # Define a versão do Node.js como 14.x
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
-          node-version: "14"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build the project
-        run: npm run build --prod
-
-      - name: Deploy
-        run: |
-          # Comandos para implantar seu aplicativo
-          # Por exemplo, você pode usar o GitHub Pages ou outro serviço
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
