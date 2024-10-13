@@ -25,5 +25,5 @@ jobs:
         working-directory: ./to-do-list-ui
       - run: npm run build --if-present
         working-directory: ./to-do-list-ui
-      - run: npm test
+      - run: npm test -- --watch=false --browsers=ChromeHeadless
         working-directory: ./to-do-list-ui
