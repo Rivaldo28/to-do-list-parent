@@ -44,7 +44,7 @@ export class TasksAddComponent implements OnInit {
     if (this.isEditMode) {
       this.taskService.updateTasks(this.newTask.id, this.newTask).subscribe(updatedTask => {
         console.log('Tarefa atualizada com sucesso:', updatedTask);
-        this.router.navigate(['/tasks']); // Redireciona após atualização
+        this.router.navigate(['/tasks']);
       }, error => {
         this.errorMessage = 'Erro ao atualizar a tarefa.';
         console.error('Error updating Tasks:', error);
@@ -53,7 +53,6 @@ export class TasksAddComponent implements OnInit {
       this.taskService.addTasks(this.newTask).subscribe(() => {
         console.log('Tarefa adicionada com sucesso.');
         this.newTask = { id: 0, title: '', description: '', status: 'pendente', createdDate: new Date().toISOString() };
-        this.router.navigate(['/tasks']); // Redireciona após adição
       }, error => {
         this.errorMessage = 'Erro ao adicionar a tarefa.';
         console.error('Error adding Tasks:', error);

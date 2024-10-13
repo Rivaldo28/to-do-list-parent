@@ -14,7 +14,7 @@
 h2 {
   text-align: center;
   margin-bottom: 20px; 
-  color: #333; 
+  color: #4d7498; 
 }
 
 .alert {
@@ -42,8 +42,8 @@ select.form-control {
 input.form-control:focus,
 textarea.form-control:focus,
 select.form-control:focus {
-  border-color: #007bff; 
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #516EE0; 
+  box-shadow: 0 0 5px rgba(145, 81, 224, 1);
 }
 
 button {
@@ -53,11 +53,6 @@ button {
 button.btn.btn-primary {
   background-color:  #4d7498 ;
   border: #4d7498;
-}
-
-.btn-danger {
-  background-color: #9151E0;
-  border: #9151E0;
 }
 
 button.btn.btn-primary:hover, .btn-danger:hover{
