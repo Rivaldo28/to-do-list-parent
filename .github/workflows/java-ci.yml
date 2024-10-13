@@ -1,4 +1,4 @@
-name: Java CI
+name: Java CI for To-Do List API
 
 on:
   push:
@@ -21,7 +21,11 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: mvn clean install --no-transfer-progress
+        run: |
+          cd to-do-list-api
+          mvn clean install --no-transfer-progress
 
       - name: Run Tests
-        run: mvn test --no-transfer-progress
+        run: |
+          cd to-do-list-api
+          mvn test --no-transfer-progress
