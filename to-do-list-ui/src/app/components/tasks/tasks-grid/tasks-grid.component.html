@@ -12,7 +12,7 @@
       <tr *ngIf="tasks.length === 0">
         <td colspan="4" class="text-center">Nenhuma tarefa encontrada.</td>
       </tr>
-      <tr *ngFor="let task of tasks">
+      <tr *ngFor="let task of tasks" [ngClass]="{'highlight-pedente': task.status === 'pendente'}">
         <td>
           <input type="radio" name="selectedTask" (change)="onSelectTask(task)"  class="radioStyle"/>
         </td>

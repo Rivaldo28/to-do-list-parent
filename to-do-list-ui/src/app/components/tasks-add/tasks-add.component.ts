@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from 'src/app/service/TaskService';
 import { Tasks } from 'src/app/model/Tasks.model';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tasks-add',
@@ -18,7 +19,8 @@ export class TasksAddComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +46,6 @@ export class TasksAddComponent implements OnInit {
   }
 
   addTask(): void {
-    // Validação dos campos
     if (!this.newTask.title || !this.newTask.description || !this.newTask.status) {
         this.errorMessage = 'Todos os campos devem ser preenchidos!';
         return;
@@ -53,7 +54,6 @@ export class TasksAddComponent implements OnInit {
 
     console.log('Dados da tarefa antes de enviar:', this.newTask);
 
-    // Confirmação antes de salvar
     Swal.fire({
         title: 'Salvar lista',
         text: "Tem certeza que deseja salvar!",
@@ -70,6 +70,7 @@ export class TasksAddComponent implements OnInit {
                 this.taskService.updateTasks(this.newTask.id, this.newTask).subscribe(updatedTask => {
                     console.log('Tarefa atualizada com sucesso:', updatedTask);
                     this.router.navigate(['/tasks']);
+                    this.toastr.success('Tarefa atualizada', 'Sucesso!');
                 }, error => {
                     this.errorMessage = 'Erro ao atualizar a tarefa.';
                     console.error('Error updating Tasks:', error);
@@ -78,6 +79,7 @@ export class TasksAddComponent implements OnInit {
                 this.taskService.addTasks(this.newTask).subscribe(() => {
                     console.log('Tarefa adicionada com sucesso.');
                     this.newTask = { id: 0, title: '', description: '', status: 'pendente', createdDate: new Date().toISOString() };
+                    this.toastr.success('Tarefa salva na base de dados', 'Sucesso!');
                 }, error => {
                     this.errorMessage = 'Erro ao adicionar a tarefa.';
                     console.error('Error adding Tasks:', error);

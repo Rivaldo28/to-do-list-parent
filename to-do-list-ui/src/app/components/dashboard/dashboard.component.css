@@ -1,0 +1,8 @@
+button.btn.btn-primary {
+  background-color:  #4d7498 ;
+  border: #4d7498;
+}
+
+button.btn.btn-primary:hover, .btn-danger:hover{
+  background: linear-gradient(45deg,#51C8E0, #516EE0) !important;
+}

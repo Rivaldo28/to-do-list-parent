@@ -28,3 +28,8 @@ input[type="radio" ] {
   background-color: #6251E0;
   border-color: #6251E0;
 }
+
+table .highlight-pedente td{
+  background-color: #51C8E0 !important; 
+  color: #FFFF;
+}

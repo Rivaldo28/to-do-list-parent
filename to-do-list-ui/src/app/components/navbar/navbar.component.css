@@ -7,10 +7,11 @@ body {
   height: 15px;
   margin-right: 15px;
   margin-left: 45px;
+  margin-top: -10px;
 }
 
 nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top {
-  background-color: #4d7498 !important;
+  background-color: #111 !important;
 }
 
 table > th {

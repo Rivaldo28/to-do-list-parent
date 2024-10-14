@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  Tasks: Tasks[] = [];
+  tasks: Tasks[] = [];
   filteredTasks: Tasks[] = [];
   newTasks: Tasks = { id: 0, title: '', description: '', status: 'pendente', createdDate: new Date().toISOString() };
   selectedTask: Tasks | null = null;
@@ -34,17 +34,29 @@ export class TasksComponent implements OnInit {
   }
 
   loadTasks() {
-    this.taskService.getTasks().subscribe(data => {
-      this.Tasks = data;
-      this.filterTasks();
-    }, error => {
-      console.error('Error loading Tasks:', error);
+    this.taskService.getTasks().subscribe(
+      (data: Tasks[]) => {
+        this.tasks = data; // Armazena as tarefas
+        this.sortTasksDescending(); // Ordena as tarefas em ordem decrescente
+        this.filterTasks(); // Chama o método de filtragem, se necessário
+      },
+      (error) => {
+        console.error('Error loading tasks:', error);
+      }
+    );
+  }
+
+  sortTasksDescending() {
+    this.tasks.sort((a, b) => {
+      if (a.id > b.id) return -1; // Altere 'id' para o campo que deseja usar
+      if (a.id < b.id) return 1;
+      return 0;
     });
   }
 
   filterTasks() {
     if (this.statusFilter === '') {
-      this.filteredTasks = this.Tasks;
+      this.filteredTasks = this.tasks;
     } else {
       this.taskService.filterTasks(this.statusFilter).subscribe(data => {
         this.filteredTasks = data;
@@ -56,7 +68,7 @@ export class TasksComponent implements OnInit {
 
   addTasks() {
     this.taskService.addTasks(this.newTasks).subscribe(Tasks => {
-      this.Tasks.push(Tasks);
+      this.tasks.push(Tasks);
       this.newTasks = { id: 0, title: '', description: '', status: 'pendente', createdDate: new Date().toISOString() };
       this.filterTasks(); 
     }, error => {
@@ -81,7 +93,7 @@ export class TasksComponent implements OnInit {
     }).then((result) => {
         if (result.isConfirmed && this.selectedTask) {
             this.taskService.deleteTasks(this.selectedTask.id).subscribe(() => {
-                this.Tasks = this.Tasks.filter(task => task.id !== this.selectedTask!.id);
+                this.tasks = this.tasks.filter(task => task.id !== this.selectedTask!.id);
                 this.selectedTask = null; 
                 this.filterTasks();
 
@@ -105,8 +117,8 @@ export class TasksComponent implements OnInit {
   updateTasks() {
       if (this.selectedTask) {
         this.taskService.updateTasks(this.selectedTask.id, this.selectedTask).subscribe(updatedTasks => {
-          const index = this.Tasks.findIndex(Tasks => Tasks.id === updatedTasks.id);
-          this.Tasks[index] = updatedTasks;
+          const index = this.tasks.findIndex(Tasks => Tasks.id === updatedTasks.id);
+          this.tasks[index] = updatedTasks;
           this.selectedTask = null;
           this.filterTasks(); 
         }, error => {
