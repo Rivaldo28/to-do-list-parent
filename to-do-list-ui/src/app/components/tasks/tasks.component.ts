@@ -3,7 +3,6 @@ import { TaskService } from 'src/app/service/TaskService';
 import { Tasks } from 'src/app/model/Tasks.model';
 import { Router } from '@angular/router';
 import { ExportCSVService } from 'src/app/service/export-csv.service';
-import * as moment from 'moment';
 import Swal from 'sweetalert2';
 
 @Component({
