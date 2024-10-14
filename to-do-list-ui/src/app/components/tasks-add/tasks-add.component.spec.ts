@@ -1,7 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing'; // Adicione esta linha
+import { RouterTestingModule } from '@angular/router/testing';
 import { TasksAddComponent } from './tasks-add.component';
+import { ToastrService } from 'ngx-toastr';
+
+class MockToastrService {
+  success() {}
+  error() {}
+  info() {}
+  warning() {}
+}
 
 describe('TasksAddComponent', () => {
   let component: TasksAddComponent;
@@ -11,9 +19,12 @@ describe('TasksAddComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule // Adicione esta linha
-      ], 
-      declarations: [TasksAddComponent]
+        RouterTestingModule
+      ],
+      declarations: [TasksAddComponent],
+      providers: [
+        { provide: ToastrService, useClass: MockToastrService } // Adiciona o mock do ToastrService
+      ]
     })
     .compileComponents();
   });

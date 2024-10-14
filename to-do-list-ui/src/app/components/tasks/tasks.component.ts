@@ -36,9 +36,9 @@ export class TasksComponent implements OnInit {
   loadTasks() {
     this.taskService.getTasks().subscribe(
       (data: Tasks[]) => {
-        this.tasks = data; // Armazena as tarefas
-        this.sortTasksDescending(); // Ordena as tarefas em ordem decrescente
-        this.filterTasks(); // Chama o método de filtragem, se necessário
+        this.tasks = data;
+        this.sortTasksDescending(); 
+        this.filterTasks(); 
       },
       (error) => {
         console.error('Error loading tasks:', error);
@@ -48,7 +48,7 @@ export class TasksComponent implements OnInit {
 
   sortTasksDescending() {
     this.tasks.sort((a, b) => {
-      if (a.id > b.id) return -1; // Altere 'id' para o campo que deseja usar
+      if (a.id > b.id) return -1;
       if (a.id < b.id) return 1;
       return 0;
     });

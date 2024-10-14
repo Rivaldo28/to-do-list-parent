@@ -9,6 +9,7 @@ import { TasksGridComponent } from './tasks/tasks-grid/tasks-grid.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoadingComponent } from './loading/loading.component';
     CommonModule,
     FormsModule,
     ChartsModule,
-    RouterModule 
+    RouterModule,
+    ToastrModule.forRoot(),
   ]
 })
 export class ComponentsModule { }
