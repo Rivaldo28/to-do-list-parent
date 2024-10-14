@@ -1,4 +1,7 @@
-<div class="container mt-5 margin">
+<div *ngIf="loading" class="loading">
+  <app-loading></app-loading>
+</div>
+<div class="container mt-5 margin" *ngIf="loading==false">
   <h1 class="text-center mb-4">Lista de Tarefas</h1>
 
   <div class="row align-items-center mb-3">
@@ -23,7 +26,7 @@
           <i class="fa fa-trash"></i>
         </button>
         <button type="button" class="btn btn-primary" title="CSV/Excel" (click)="exportCSV()">
-          <i class="fa fa-file-excel-o"></i>
+          <i class="fa-solid fa-file-csv"></i>
         </button>
         <button type="button" class="btn btn-danger" *ngIf="selectedTask" title="Editar" [routerLink]="['/edit', selectedTask.id]">
           <i class="fa fa-edit"></i>

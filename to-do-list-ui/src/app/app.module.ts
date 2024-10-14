@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { TaskService } from './service/TaskService';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TaskService } from './service/TaskService';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

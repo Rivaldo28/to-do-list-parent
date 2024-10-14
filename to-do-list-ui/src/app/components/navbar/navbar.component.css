@@ -2,9 +2,11 @@ body {
   width: 100%;
 }
 
-img {
-  width: 40px;
-  height: 20px;
+.logo {
+  width: 120px;
+  height: 15px;
+  margin-right: 15px;
+  margin-left: 45px;
 }
 
 nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top {
@@ -38,3 +40,6 @@ a.nav-link {
   height: 2.5em;
 }
 
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top {
+  text-align: center;
+}

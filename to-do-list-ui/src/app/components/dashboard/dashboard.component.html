@@ -1,8 +1,8 @@
 <div *ngIf="loading" class="loading">
-  <p>Carregando...</p>
+  <app-loading></app-loading>
 </div>
 
-<div class="container mt-5" *ngIf="!loading">
+<div class="container mt-5" *ngIf="loading==false">
   <h2 class="text-center mb-4">Dashboard de Status</h2>
 
   <!-- Gráfico de barras -->

@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TasksGridComponent } from './tasks/tasks-grid/tasks-grid.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +16,16 @@ import { RouterModule } from '@angular/router';
     TasksGridComponent,
     NavbarComponent,
     DashboardComponent,
-    TasksAddComponent
+    TasksAddComponent,
+    LoadingComponent
   ],
   exports: [
     TasksComponent,
     TasksGridComponent,
     NavbarComponent,
     DashboardComponent,
-    TasksAddComponent
+    TasksAddComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

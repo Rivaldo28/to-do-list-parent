@@ -8,7 +8,7 @@ import { ChartOptions } from 'chart.js';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  loading: boolean = true;
+  loading: boolean = false;
   chartData: number[] = [];
   chartLabels: string[] = ['Pendente', 'Realizado', 'Em Andamento'];
 
@@ -29,6 +29,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTasks();
+    this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+        }, 1000);
   }
 
   loadTasks(): void {
