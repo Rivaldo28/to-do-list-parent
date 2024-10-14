@@ -2,7 +2,7 @@
   <h1 class="text-center mb-4">Lista de Tarefas</h1>
 
   <div class="row align-items-center mb-3">
-    <div class="col-md-8">
+    <div class="col-md-9">
       <div class="form-group">
         <label for="statusFilter">Filtrar por Status:</label>
         <select id="statusFilter" class="form-control" [(ngModel)]="statusFilter" (change)="filterTasks()">
@@ -14,15 +14,15 @@
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="" role="group">
+    <div class="col-md-3 text-end">
+      <div role="group">
         <button type="button" class="btn btn-primary" routerLink="/add" title="Novo">
           <i class="fa fa-file"></i>
         </button>
         <button type="button" class="btn btn-primary" (click)="deleteSelectedTask()" title="Deletar" [disabled]="!selectedTask">
           <i class="fa fa-trash"></i>
         </button>
-        <button type="button" class="btn btn-primary" title="CSV/Excel">
+        <button type="button" class="btn btn-primary" title="CSV/Excel" (click)="exportCSV()">
           <i class="fa fa-file-excel-o"></i>
         </button>
         <button type="button" class="btn btn-danger" *ngIf="selectedTask" title="Editar" [routerLink]="['/edit', selectedTask.id]">
@@ -30,7 +30,7 @@
         </button>
       </div>
     </div>
-  </div>
+    
 
   <app-tasks-grid [tasks]="filteredTasks" (selectTask)="selectTask($event)"></app-tasks-grid>
 </div>

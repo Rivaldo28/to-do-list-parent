@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/service/TaskService';
 import { Tasks } from 'src/app/model/Tasks.model';
 import { Router } from '@angular/router';
+import { ExportCSVService } from 'src/app/service/export-csv.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-tasks',
@@ -14,16 +16,19 @@ export class TasksComponent implements OnInit {
   newTasks: Tasks = { id: 0, title: '', description: '', status: 'pendente', createdDate: new Date().toISOString() };
   selectedTask: Tasks | null = null;
   statusFilter: string = '';
+  public tasksList: Array<Tasks> = [];
+  public listExportCSV = new Array<Tasks>();
 
-  constructor(private TaskService: TaskService,
-    private router: Router) {}
+  constructor(private taskService: TaskService,
+    private router: Router,
+    private exportCsvService: ExportCSVService,) {}
 
   ngOnInit(): void {
     this.loadTasks();
   }
 
   loadTasks() {
-    this.TaskService.getTasks().subscribe(data => {
+    this.taskService.getTasks().subscribe(data => {
       this.Tasks = data;
       this.filterTasks();
     }, error => {
@@ -35,7 +40,7 @@ export class TasksComponent implements OnInit {
     if (this.statusFilter === '') {
       this.filteredTasks = this.Tasks;
     } else {
-      this.TaskService.filterTasks(this.statusFilter).subscribe(data => {
+      this.taskService.filterTasks(this.statusFilter).subscribe(data => {
         this.filteredTasks = data;
       }, error => {
         console.error('Error filtering Tasks:', error);
@@ -44,7 +49,7 @@ export class TasksComponent implements OnInit {
   }
 
   addTasks() {
-    this.TaskService.addTasks(this.newTasks).subscribe(Tasks => {
+    this.taskService.addTasks(this.newTasks).subscribe(Tasks => {
       this.Tasks.push(Tasks);
       this.newTasks = { id: 0, title: '', description: '', status: 'pendente', createdDate: new Date().toISOString() };
       this.filterTasks(); 
@@ -59,7 +64,7 @@ export class TasksComponent implements OnInit {
 
   deleteSelectedTask() {
     if (this.selectedTask) {
-      this.TaskService.deleteTasks(this.selectedTask.id).subscribe(() => {
+      this.taskService.deleteTasks(this.selectedTask.id).subscribe(() => {
         this.Tasks = this.Tasks.filter(Tasks => Tasks.id !== this.selectedTask!.id);
         this.selectedTask = null; 
         this.filterTasks();
@@ -71,7 +76,7 @@ export class TasksComponent implements OnInit {
 
   updateTasks() {
     if (this.selectedTask) {
-      this.TaskService.updateTasks(this.selectedTask.id, this.selectedTask).subscribe(updatedTasks => {
+      this.taskService.updateTasks(this.selectedTask.id, this.selectedTask).subscribe(updatedTasks => {
         const index = this.Tasks.findIndex(Tasks => Tasks.id === updatedTasks.id);
         this.Tasks[index] = updatedTasks;
         this.selectedTask = null;
@@ -81,4 +86,22 @@ export class TasksComponent implements OnInit {
       });
     }
   }
+
+  exportCSV() {
+    const header: string[] = ['Código', 'Título', 'Descrição', 'Status'];
+    const dados: any[] = [];
+    this.listExportCSV = this.filteredTasks; 
+
+    this.listExportCSV.forEach((task) => {
+        const linha: any[] = [];
+        linha.push(task.id); 
+        linha.push(task.title ? task.title : '');
+        linha.push(task.description ? task.description : '');
+        linha.push(task.status ? task.status : '');
+        dados.push(linha);
+    });
+
+    this.exportCsvService.exportCsv(header, dados, 'lista-tarefas.csv');
+}
+
 }
